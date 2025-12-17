@@ -4,6 +4,7 @@ Organizations frequently need to keep private workloads such as databases and ap
 The task was to model a secure, well-designed AWS VPC setup that applies network segmentation and enforces least-privilege access principles.
 This project showcases the design and deployment of a secure, segmented network architecture on AWS, aligned with best practices outlined in the AWS Well-Architected Framework. It incorporates network isolation, tightly controlled access, and layered security controls to model a production-ready environment.
 
+
 ARCHITECTURE DIAGRAM
 ![Architecture Diagram](https://i.postimg.cc/Hsf88M5D/z-Chat-GPT-Image-Dec-17-2025-06-48-02-PM.png)
 APPROACH:
@@ -13,8 +14,10 @@ APPROACH:
     Apply Security Groups and Network ACLs (NACLs) to enforce a defense-in-depth security model.
     Test and confirm proper network isolation and controlled access between components.
 
+
 VPC Creation:
 For this project, the architecture was implemented within a single Availability Zone to make testing and visualization easier. In a real-world, production or enterprise setup, the architecture would be spread across multiple Availability Zones to ensure high availability and improved fault tolerance.
+
 Create a custom VPC with a CIDR block of 10.0.0.0/16.
     ![VPC](https://i.postimg.cc/ZYfDbwGd/Screenshot-2025-10-19-111544.png)
     ![VPC](https://i.postimg.cc/8kWB3tTX/Screenshot-2025-10-19-111624.png)
@@ -25,6 +28,7 @@ Public Subnet: 10.0.1.0/24
 ![Public Subnet](https://i.postimg.cc/qRFbLRXs/Screenshot-2025-10-19-111837.png)
 ![Public Subnet](https://i.postimg.cc/GpHSsGvH/Screenshot-2025-10-19-111852.png)
 ![Public Subnet](https://i.postimg.cc/t4mByJ84/Screenshot-2025-10-19-112133.png)
+
 
 Private Subnet: 10.0.2.0/24
 ![Subnet 1](https://i.postimg.cc/5NQ0pR16/Screenshot-2025-10-19-112344.png)
