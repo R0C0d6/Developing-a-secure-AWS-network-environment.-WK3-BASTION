@@ -20,30 +20,59 @@ ARCHITECTURE DIAGRAM
 
 
 VPC Creation:
+Create a custom VPC with a CIDR block of 10.0.0.0/16.
+    ![VPC](https://i.postimg.cc/ZYfDbwGd/Screenshot-2025-10-19-111544.png)
+    ![VPC](https://i.postimg.cc/8kWB3tTX/Screenshot-2025-10-19-111624.png)
+    ![VPC](https://i.postimg.cc/sfwDVRfv/Screenshot-2025-10-19-111649.png)
+    
+Create two subnets:
+Public Subnet: 10.0.1.0/24
+![Public Subnet](https://i.postimg.cc/qRFbLRXs/Screenshot-2025-10-19-111837.png)
+![Public Subnet](https://i.postimg.cc/GpHSsGvH/Screenshot-2025-10-19-111852.png)
+![Public Subnet](https://i.postimg.cc/t4mByJ84/Screenshot-2025-10-19-112133.png)
 
-    Created a custom VPC with a CIDR block of 10.0.0.0/16.
-    Divided into two subnets:
-        Public Subnet: 10.0.1.0/24
-        Private Subnet: 10.0.2.0/24
+Private Subnet: 10.0.2.0/24
+![Subnet 1](https://i.postimg.cc/5NQ0pR16/Screenshot-2025-10-19-112344.png)
+![Subnet 1](https://i.postimg.cc/K4hy0QrB/Screenshot-2025-10-19-112419.png)
 
-![Project Screenshot](https://example.com/image.png)
+Enable Auto Assign Public IP for Public Subnet
+![Auto Assign Public IP](https://i.postimg.cc/JhsM4yn6/Screenshot-2025-10-19-112525.png)
+![Auto Assign Public IP](https://i.postimg.cc/wBqRWQw1/Screenshot-2025-10-19-112559.png)
 
-(Insert Screenshot: VPC and Subnets Configuration)
 
 Internet Gateway and NAT Gateway:
+Create an Internet Gateway:
+    ![Create IGW](https://i.postimg.cc/DZsJjv9y/Screenshot-2025-10-19-112705.png)
+    ![Create IGW](https://i.postimg.cc/nrpz3vKs/Screenshot-2025-10-19-112717.png)
+    
+Attach the Internet Gateway (IGW) to the VPC for public internet access.
+    ![Attach IGW](https://i.postimg.cc/YC5tX6MM/Screenshot-2025-10-19-112847.png) 
+    ![Attach IGW](https://i.postimg.cc/MHNLWYsT/Screenshot-2025-10-19-112909.png)
+    
+Create an Elastic IP:
+    ![Attach EIP](https://i.postimg.cc/k4kZCcYt/Screenshot-2025-10-19-113149.png) 
 
-    Attached an Internet Gateway (IGW) to the VPC for public internet access.
-    Deployed a NAT Gateway in the public subnet to allow private instances to access the internet securely for updates or package downloads without being directly exposed.
+Deploy a NAT Gateway in the public subnet to allow private instances to access the internet securely for updates or package downloads without being directly exposed. Assign EIP.
+![Create NAT Gateway](https://i.postimg.cc/52zKbLWf/Screenshot-2025-10-19-113709.png)
+![Create NAT Gateway](https://i.postimg.cc/3JNJSJ58/Screenshot-2025-10-19-113727.png)
 
-![Project Screenshot](https://example.com/image.png)
 
-(Insert Screenshot: IGW and NAT Gateway Setup)
+Create a Routing Configuration(Route Tables)
+PUBLIC ROUTE TABLE CREATION
+![RT](https://i.postimg.cc/dDPHyV8v/Screenshot-2025-10-19-113918.png)
+![RT](https://i.postimg.cc/zv12Lfw5/Screenshot-2025-10-19-114305.png)
 
-Routing Configuration:
-
-    Configured route tables:
+Configure the route tables:
         Public route table routes 0.0.0.0/0 through the IGW.
+        ![RT](https://i.postimg.cc/zv12Lfw5/Screenshot-2025-10-19-114305.png)
+        ![RT](https://i.postimg.cc/pXKhYLDz/Screenshot-2025-10-19-114503.png)
+        ![RT](https://i.postimg.cc/rpGkFztW/Screenshot-2025-10-19-114551.png)
+        ![RT](https://i.postimg.cc/PJP9ZqNM/Screenshot-2025-10-19-114647.png)
+        ![RT](https://i.postimg.cc/Y2TMRckw/Screenshot-2025-10-19-114701.png)
+        
+PRIVATE ROUTE TABLE CREATION
         Private route table routes 0.0.0.0/0 through the NAT Gateway.
+        
     Associated subnets accordingly.
 
 ![Project Screenshot](https://example.com/image.png)
