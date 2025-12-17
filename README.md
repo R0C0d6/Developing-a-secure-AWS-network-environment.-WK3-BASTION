@@ -1,42 +1,23 @@
-Secure Network Architecture on AWS with Bastion Host
+Building and configuring a secure network environment featuring public and private subnets, proper routing, and restricted, well-managed connectivity.
 
-Architecture Diagram
+This project showcases the design and deployment of a secure, segmented network architecture on AWS, aligned with best practices outlined in the AWS Well-Architected Framework. It incorporates network isolation, tightly controlled access, and layered security controls to model a production-ready environment.
+The focus is on security, scalability, and observability-core competencies for cloud and DevOps engineers operating in enterprise settings.
+    
+For this project, the architecture was implemented within a single Availability Zone to make testing and visualization easier. In a real-world, production or enterprise setup, the architecture would be spread across multiple Availability Zones to ensure high availability and improved fault tolerance.
 
-    Note: For the purposes of this project, the architecture was deployed in a single Availability Zone to simplify testing and visualization. In a production-grade or enterprise environment, this setup would be distributed across multiple Availability Zones for high availability and fault tolerance.
+Organizations frequently need to keep private workloads such as databases and application servers—shielded from direct internet exposure while still allowing restricted administrative access.
+The task was to model a secure, well-designed AWS VPC setup that applies network segmentation and enforces least-privilege access principles.
+APPROACH:
+    Design and set up a custom VPC with both public and private subnets.
+    Configure routing components, including route tables, an Internet Gateway (IGW), and a NAT Gateway.
+    Provision a Bastion Host to enable secure SSH access to resources in private subnets.
+    Apply Security Groups and Network ACLs (NACLs) to enforce a defense-in-depth security model.
+    Test and confirm proper network isolation and controlled access between components.
 
-Overview
 
-This project demonstrates the design and implementation of a secure, segmented network architecture in AWS following best practices from the AWS Well-Architected Framework.
-It applies network isolation principles, controlled access mechanisms, and multi-layered security configurations to simulate a production-grade environment.
+ARCHITECTURE DIAGRAM
+![Architecture Diagram](https://i.postimg.cc/fbHrg5fT/Whats-App-Image-2025-12-17-at-13-28-11.jpg)
 
-The project emphasizes security, scalability, and observability — all critical skills for cloud and DevOps engineers working in enterprise environments.
-Objectives
-
-Goal: Design and implement a secure network environment with public and private subnets, routing, and controlled connectivity.
-
-Key Objectives:
-
-    Create a custom VPC with public and private subnets.
-    Configure route tables, Internet Gateway (IGW), and NAT Gateway.
-    Deploy a Bastion Host for secure SSH access to private resources.
-    Implement Security Groups and Network ACLs (NACLs) for defense-in-depth.
-    Validate network isolation and controlled connectivity through testing.
-
-STAR Breakdown (Situation, Task, Action, Result)
-Situation
-
-Organizations often require private workloads such as databases and application servers to be isolated from the public internet while maintaining controlled administrative access.
-The challenge was to simulate a secure, well-architected AWS VPC environment that enforces least-privilege access and network segmentation.
-Task
-
-Design and deploy a secure network infrastructure that supports:
-
-    Public and private subnets
-    Controlled inbound and outbound access
-    Secure connectivity via a Bastion Host
-    Enforced security through layered AWS resources (SGs, NACLs, and routing)
-
-Action
 
 VPC Creation:
 
@@ -45,12 +26,16 @@ VPC Creation:
         Public Subnet: 10.0.1.0/24
         Private Subnet: 10.0.2.0/24
 
+![Project Screenshot](https://example.com/image.png)
+
 (Insert Screenshot: VPC and Subnets Configuration)
 
 Internet Gateway and NAT Gateway:
 
     Attached an Internet Gateway (IGW) to the VPC for public internet access.
     Deployed a NAT Gateway in the public subnet to allow private instances to access the internet securely for updates or package downloads without being directly exposed.
+
+![Project Screenshot](https://example.com/image.png)
 
 (Insert Screenshot: IGW and NAT Gateway Setup)
 
@@ -60,6 +45,8 @@ Routing Configuration:
         Public route table routes 0.0.0.0/0 through the IGW.
         Private route table routes 0.0.0.0/0 through the NAT Gateway.
     Associated subnets accordingly.
+
+![Project Screenshot](https://example.com/image.png)
 
 (Insert Screenshot: Route Table Configuration)
 
@@ -71,6 +58,8 @@ Security Layers (NACLs and Security Groups):
     Security Groups (SGs):
         Bastion Host SG allows inbound SSH (22), ICMP (ping), and HTTP/HTTPS for testing connectivity.
         Private EC2 SG only allows inbound SSH traffic from the Bastion Host’s SG — not from the internet.
+
+![Project Screenshot](https://example.com/image.png)
 
 (Insert Screenshot: NACL and Security Group Configuration)
 
@@ -90,6 +79,8 @@ Bastion Host Configuration and Port Forwarding:
 
         This setup forwards local port 2222 to the private EC2’s SSH port through the Bastion Host, allowing access without direct internet exposure.
 
+![Project Screenshot](https://example.com/image.png)
+
     (Insert Screenshot: Bastion Host Connection and Port Forwarding Example)
 
     Testing Conducted:
@@ -98,6 +89,8 @@ Bastion Host Configuration and Port Forwarding:
         Confirmed that no inbound connections were possible from the public internet to the private subnet.
 
     (Insert Screenshot: Connectivity Tests and Results)
+
+![Project Screenshot](https://example.com/image.png)
 
 Result
 
@@ -141,6 +134,8 @@ Please refer to the following screenshots for full verification of the setup:
     Security Groups and NACLs
     Bastion Host Connection and Port Forwarding
     Connectivity Tests
+
+![Project Screenshot](https://example.com/image.png)
 
 (Insert all screenshots in corresponding placeholders above)
 Repository Structure
